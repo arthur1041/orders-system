@@ -11,6 +11,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 public class Product {
 	private static final long serialVersionUID = 1L;
@@ -23,6 +25,7 @@ public class Product {
 	
 	private Double price;
 	
+	@JsonBackReference
 	@ManyToMany
 	@JoinTable(
 			name = "PRODUCT_CATEGORY",

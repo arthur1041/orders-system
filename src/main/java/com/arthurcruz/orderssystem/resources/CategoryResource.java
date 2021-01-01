@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.arthurcruz.orderssystem.domain.Category;
-import com.arthurcruz.orderssystem.services.CategoryService;
+ import com.arthurcruz.orderssystem.services.CategoryService;
 
 @RestController
 @RequestMapping(value = "/categories")
