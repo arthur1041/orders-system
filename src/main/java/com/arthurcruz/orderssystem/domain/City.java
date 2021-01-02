@@ -22,15 +22,20 @@ public class City implements Serializable {
 	@JoinColumn(name = "state_id")
 	private State state;
 	
+	@ManyToOne
+	@JoinColumn(name = "country_id")
+	private Country country;
+	
 	public City () {
 		
 	}
 
-	public City(String id, String name, State state) {
+	public City(String id, String name, State state, Country country) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.state = state;
+		this.country = country;
 	}
 
 	public String getId() {
@@ -55,6 +60,14 @@ public class City implements Serializable {
 
 	public void setState(State state) {
 		this.state = state;
+	}
+
+	public Country getCountry() {
+		return country;
+	}
+
+	public void setCountry(Country country) {
+		this.country = country;
 	}
 
 	@Override

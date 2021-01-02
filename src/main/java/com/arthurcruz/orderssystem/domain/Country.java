@@ -1,46 +1,40 @@
 package com.arthurcruz.orderssystem.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 @Entity
-public class State implements Serializable {
+public class Country implements Serializable{
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
 	private String name;
 	
-	@OneToMany(mappedBy = "state")
-	private List<City> cities;
+	@OneToMany(mappedBy = "country")
+	private List<State> states = new ArrayList<>();
 	
-	@ManyToOne
-	@JoinColumn(name = "country_id")
-	private Country country;
+	@OneToMany(mappedBy = "country")
+	private List<City> cities = new ArrayList<>();
 	
-	public State() {
+	public Country() {
 		
 	}
 
-	
-
-	public State(Integer id, String name, Country country) {
+	public Country(Integer id, String name) {
 		super();
 		this.id = id;
 		this.name = name;
-		this.country = country;
 	}
-
-
 
 	public Integer getId() {
 		return id;
@@ -57,15 +51,14 @@ public class State implements Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public Country getCountry() {
-		return country;
+
+	public List<State> getStates() {
+		return states;
 	}
 
-	public void setCountry(Country country) {
-		this.country = country;
+	public void setStates(List<State> states) {
+		this.states = states;
 	}
-
 
 	public List<City> getCities() {
 		return cities;
@@ -91,7 +84,7 @@ public class State implements Serializable {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		State other = (State) obj;
+		Country other = (Country) obj;
 		if (id == null) {
 			if (other.id != null)
 				return false;
@@ -102,9 +95,7 @@ public class State implements Serializable {
 
 	@Override
 	public String toString() {
-		return "State [id=" + id + ", name=" + name + ", cities=" + cities + "]";
+		return "Country [id=" + id + ", name=" + name + ", states=" + states + ", cities=" + cities + "]";
 	}
-	
-	
 	
 }
