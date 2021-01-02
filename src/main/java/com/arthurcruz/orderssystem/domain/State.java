@@ -11,6 +11,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 public class State implements Serializable {
 	private static final long serialVersionUID = 1L;
@@ -20,9 +23,11 @@ public class State implements Serializable {
 	private Integer id;
 	private String name;
 	
+	@JsonBackReference
 	@OneToMany(mappedBy = "state")
 	private List<City> cities;
 	
+	@JsonManagedReference
 	@ManyToOne
 	@JoinColumn(name = "country_id")
 	private Country country;
@@ -30,8 +35,6 @@ public class State implements Serializable {
 	public State() {
 		
 	}
-
-	
 
 	public State(Integer id, String name, Country country) {
 		super();
